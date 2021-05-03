@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import {map, mergeMap, catchError, exhaustMap} from 'rxjs/operators';
+import {map, mergeMap, catchError, exhaustMap, delay} from 'rxjs/operators';
 import { BookService } from './book.service';
 import { BookActions } from './book.actions';
 import {Book} from './book.reducer';
@@ -13,6 +13,7 @@ export class BookEffects {
     ofType(BookActions.GET_BOOKS),
     mergeMap(() => this.bookService.getBooks()
       .pipe(
+        delay(1000),
         map(({message, books}) => ({ type: BookActions.GET_BOOKS_SUCCESS, books, message })),
         catchError((error) => of({ type: BookActions.API_FAILURE, error }))
       ))
@@ -24,6 +25,7 @@ export class BookEffects {
     exhaustMap((action: {book: Book}) => {
       return this.bookService.addBook(action.book)
         .pipe(
+          delay(1000),
           map(({book, message}) => ({ type: BookActions.ADD_BOOK_SUCCESS, book, message })),
           catchError((error) => of({ type: BookActions.API_FAILURE, error }))
         );
@@ -35,6 +37,7 @@ export class BookEffects {
     ofType(BookActions.EDIT_BOOK),
     exhaustMap((action: {book: Book}) => this.bookService.editBook(action.book)
       .pipe(
+        delay(1000),
         map(({book, message}) => ({ type: BookActions.EDIT_BOOK_SUCCESS, book, message })),
         catchError((error) => of({ type: BookActions.API_FAILURE, error }))
       ))
@@ -45,6 +48,7 @@ export class BookEffects {
     ofType(BookActions.DELETE_BOOK),
     exhaustMap(({id}) => this.bookService.deleteBook(id)
       .pipe(
+        delay(1000),
         map(({message}) => ({ type: BookActions.DELETE_BOOK_SUCCESS, id, message })),
         catchError((error) => of({ type: BookActions.API_FAILURE, error }))
       ))

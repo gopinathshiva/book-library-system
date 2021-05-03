@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import * as fromBook from '../book.selector';
 import {deleteBook, getBooks} from '../book.actions';
 import {Router} from '@angular/router';
+import {isLoading} from '../book.selector';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-book-list',
@@ -15,11 +17,13 @@ export class BookListComponent implements OnInit {
 
   books$: Observable<Book[]> = this.store.select(fromBook.selectBooks);
   searchBook = '';
+  isLoading$ = this.store.select(isLoading);
 
   constructor(private store: Store<{ books: BookState }>,
-              private router: Router) {}
+              private router: Router) {
+  }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.store.dispatch(getBooks());
   }
 

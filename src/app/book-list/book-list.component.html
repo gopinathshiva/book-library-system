@@ -1,14 +1,25 @@
 <section>
-  <div class="search-container">
-    <label>
-      <input type="text" placeholder="Search Books" [(ngModel)]="searchBook">
-    </label>
+  <div *ngIf="!(isLoading$ | async); else loadingState">
+    <div *ngIf="(books$ | async)?.length!==0; else zeroState" class="book-list-container">
+      <div  class="search-container">
+        <label>
+          <input type="text" placeholder="Search Books" [(ngModel)]="searchBook">
+        </label>
+      </div>
+      <app-book *ngFor="let book of books$ | async | search: searchBook"
+                [book]="book"
+                (removeBook)="handleRemoveBook($event)"
+                (editBook)="handleEditBook($event)"
+      ></app-book>
+    </div>
   </div>
-  <div  class="book-list-container">
-    <app-book *ngFor="let book of books$ | async | search: searchBook"
-              [book]="book"
-              (removeBook)="handleRemoveBook($event)"
-              (editBook)="handleEditBook($event)"
-    ></app-book>
-  </div>
+
+  <ng-template #zeroState>
+    <div class="center-align-message">No Books Found. Start adding books...</div>
+  </ng-template>
+
+  <ng-template #loadingState>
+    <div class="center-align-message">Loading. Please wait...</div>
+  </ng-template>
+
 </section>

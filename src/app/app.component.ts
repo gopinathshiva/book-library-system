@@ -22,14 +22,16 @@ const mockBook = {
 
 export class AppComponent implements OnInit {
   title = 'book-library-system';
-  isLoading$ = of(false);
+  isLoading = false;
 
   constructor(private store: Store<{ book: BookState }>) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.isLoading$ = this.store.select(isLoading);
-    }, 0);
+    this.store.select(isLoading).subscribe(isApiLoading => {
+      setTimeout(() => {
+        this.isLoading = isApiLoading;
+      }, 0);
+    });
   }
 
   getBooks(): void {

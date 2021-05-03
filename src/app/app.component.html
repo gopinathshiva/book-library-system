@@ -40,7 +40,7 @@
 <app-header></app-header>
 
 <div class="content" role="main">
-  <app-loader *ngIf="isLoading$ | async"></app-loader>
+  <app-loader *ngIf="isLoading"></app-loader>
   <router-outlet></router-outlet>
 
   <div>
