@@ -31,6 +31,10 @@ export class BookListComponent implements OnInit {
     this.store.dispatch(deleteBook({ id }));
   }
 
+  async addBook(): Promise<void> {
+    await this.router.navigate([`/book/`]);
+  }
+
   async handleEditBook(id: string): Promise<void> {
     await this.router.navigate([`/book/${id}`]);
   }
