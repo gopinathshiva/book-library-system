@@ -54,6 +54,7 @@ export interface Book {
   description: string;
   id: string;
   name: string;
+  url: string;
 }
 
 export interface BookState {

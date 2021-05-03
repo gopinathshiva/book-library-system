@@ -1,6 +1,14 @@
-<section class="book-list-container">
-  <app-book *ngFor="let book of books$ | async"
-            [book]="book"
-            (removeBook)="handleRemoveBook($event)"
-  ></app-book>
+<section>
+  <div class="search-container">
+    <label>
+      <input type="text" placeholder="Search Books" [(ngModel)]="searchBook">
+    </label>
+  </div>
+  <div  class="book-list-container">
+    <app-book *ngFor="let book of books$ | async | search: searchBook"
+              [book]="book"
+              (removeBook)="handleRemoveBook($event)"
+              (editBook)="handleEditBook($event)"
+    ></app-book>
+  </div>
 </section>

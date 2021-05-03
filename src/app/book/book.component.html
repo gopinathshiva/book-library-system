@@ -14,7 +14,7 @@
     <p>{{ book.description }}</p>
   </div>
   <div class="book-actions">
-    <button class="book-actions__edit" >
+    <button (click)="editBook.emit(book.id)" class="book-actions__edit" >
       <img src="/assets/images/edit.png" alt="Edit book" />
     </button>
     <button (click)="removeBook.emit(book.id)" class="book-actions__remove" >

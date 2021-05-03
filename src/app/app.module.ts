@@ -13,7 +13,8 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookComponent } from './book/book.component';
 import { LoaderComponent } from './loader/loader.component';
 import { BookFormComponent } from './book-form/book-form.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     BookListComponent,
     BookComponent,
     LoaderComponent,
-    BookFormComponent
+    BookFormComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     StoreModule.forRoot({book: reducer}, {}),
     EffectsModule.forRoot([BookEffects]),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

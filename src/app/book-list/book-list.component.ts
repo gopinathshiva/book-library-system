@@ -4,6 +4,7 @@ import {Book, BookState} from '../book.reducer';
 import {Observable} from 'rxjs';
 import * as fromBook from '../book.selector';
 import {deleteBook, getBooks} from '../book.actions';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -13,8 +14,10 @@ import {deleteBook, getBooks} from '../book.actions';
 export class BookListComponent implements OnInit {
 
   books$: Observable<Book[]> = this.store.select(fromBook.selectBooks);
+  searchBook = '';
 
-  constructor(private store: Store<{ books: BookState }>) {}
+  constructor(private store: Store<{ books: BookState }>,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.store.dispatch(getBooks());
@@ -22,6 +25,10 @@ export class BookListComponent implements OnInit {
 
   handleRemoveBook(id: string): void {
     this.store.dispatch(deleteBook({ id }));
+  }
+
+  async handleEditBook(id: string): Promise<void> {
+    await this.router.navigate([`/book/${id}`]);
   }
 
 }

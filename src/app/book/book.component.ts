@@ -12,4 +12,5 @@ export class BookComponent {
   @Input() book!: Book;
 
   @Output() removeBook: EventEmitter<string> = new EventEmitter<string>();
+  @Output() editBook: EventEmitter<string> = new EventEmitter<string>();
 }
