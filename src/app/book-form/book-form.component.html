@@ -20,5 +20,6 @@
     <div class="error" *ngIf="url?.invalid && (url?.dirty || url?.touched)">Book Image Url is required</div>
 
     <input type="submit" value="Submit" [disabled]="bookForm.invalid">
+    <div class="message">{{ message$ | async }}</div>
   </form>
 </div>

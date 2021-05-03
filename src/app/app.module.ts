@@ -4,9 +4,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { reducer } from './book.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import {BookEffects} from './book.effects';
 import {HttpClientModule} from '@angular/common/http';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { BookListComponent } from './book-list/book-list.component';
@@ -16,6 +14,8 @@ import { BookFormComponent } from './book-form/book-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SearchPipe } from './search.pipe';
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
+import {BookEffects} from './store/book.effects';
+import {reducer} from './store/book.reducer';
 
 @NgModule({
   declarations: [

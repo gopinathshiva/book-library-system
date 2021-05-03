@@ -1,9 +1,9 @@
 <section>
-  <div *ngIf="!(isLoading$ | async); else loadingState">
-    <div *ngIf="(books$ | async)?.length!==0; else zeroState" class="book-list-container">
-      <div  class="search-container">
+  <div *ngIf="!(isLoading$ | async) || (books$ | async)?.length !== 0; else loadingState">
+    <div *ngIf="(books$ | async)?.length !== 0; else zeroState" class="book-list-container">
+      <div class="search-container">
         <label>
-          <input type="text" placeholder="Search Books" [(ngModel)]="searchBook">
+          <input type="text" placeholder="Search Books" [ngModel]="searchBook" (ngModelChange)='searchChange($event)'>
         </label>
       </div>
       <app-book *ngFor="let book of books$ | async | search: searchBook"

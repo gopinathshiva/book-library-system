@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {Book} from '../book.reducer';
+import {Book} from '../store/book.reducer';
 
 @Component({
   selector: 'app-book',

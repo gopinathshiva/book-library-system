@@ -7,7 +7,7 @@ import {
   addBookApiSuccess,
   editBookApiSuccess,
   deleteBookApiSuccess,
-  getBooksApiSuccess
+  getBooksApiSuccess, clearApiMessage
 } from './book.actions';
 
 export const initialState: BookState = {
@@ -42,6 +42,9 @@ const bookReducer = createReducer(
   on(getBooksApiSuccess, (state: BookState, { books, message }) => {
     return {...state, books, isLoading: false, message };
   }),
+  on(clearApiMessage, (state: BookState) => {
+    return {...state, message: '' };
+  }),
 );
 
 export function reducer(bookState: BookState, action: Action): any {
@@ -61,8 +64,4 @@ export interface BookState {
   books: Book[];
   isLoading: boolean;
   message: string | null;
-}
-
-export interface AppState {
-  book: BookState;
 }

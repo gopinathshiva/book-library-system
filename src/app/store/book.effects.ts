@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import {map, mergeMap, catchError, exhaustMap, delay} from 'rxjs/operators';
-import { BookService } from './book.service';
 import { BookActions } from './book.actions';
 import {Book} from './book.reducer';
+import {BookService} from '../book.service';
 
 @Injectable()
 export class BookEffects {

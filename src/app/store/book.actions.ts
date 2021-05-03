@@ -1,6 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {Book} from './book.reducer';
-import {AddBookApiResponse, DeleteBookApiResponse, EditBookApiResponse, GetBookApiResponse} from './book.service';
+import {AddBookApiResponse, DeleteBookApiResponse, EditBookApiResponse, GetBookApiResponse} from '../book.service';
 
 export enum BookActions {
   ADD_BOOK = '[Book Component] Add Book',
@@ -13,6 +13,8 @@ export enum BookActions {
   EDIT_BOOK_SUCCESS = '[Book API] Edit Book Success',
   DELETE_BOOK_SUCCESS = '[Book API] Delete Book Success',
   API_FAILURE = '[Book API] Failed',
+
+  CLEAR_API_MESSAGE = '[Book Component] Clear api message',
 }
 
 export const addBook = createAction(BookActions.ADD_BOOK, props<{ book: Book }>());
@@ -25,3 +27,5 @@ export const editBookApiSuccess = createAction(BookActions.EDIT_BOOK_SUCCESS, pr
 export const deleteBookApiSuccess = createAction(BookActions.DELETE_BOOK_SUCCESS, props<DeleteBookApiResponse>());
 export const getBooksApiSuccess = createAction(BookActions.GET_BOOKS_SUCCESS, props<GetBookApiResponse>());
 export const booksApiFailed = createAction(BookActions.API_FAILURE, props<any>());
+
+export const clearApiMessage = createAction(BookActions.CLEAR_API_MESSAGE);

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Book} from './book.reducer';
 import {Observable} from 'rxjs';
+import {Book} from './store/book.reducer';
 
 @Injectable({
   providedIn: 'root'
