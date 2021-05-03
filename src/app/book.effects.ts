@@ -13,7 +13,7 @@ export class BookEffects {
     ofType(BookActions.GET_BOOKS),
     mergeMap(() => this.bookService.getBooks()
       .pipe(
-        delay(1000),
+        delay(1000), // added delay to simulate api behaviour
         map(({message, books}) => ({ type: BookActions.GET_BOOKS_SUCCESS, books, message })),
         catchError((error) => of({ type: BookActions.API_FAILURE, error }))
       ))
@@ -25,7 +25,7 @@ export class BookEffects {
     exhaustMap((action: {book: Book}) => {
       return this.bookService.addBook(action.book)
         .pipe(
-          delay(1000),
+          delay(1000), // added delay to simulate api behaviour
           map(({book, message}) => ({ type: BookActions.ADD_BOOK_SUCCESS, book, message })),
           catchError((error) => of({ type: BookActions.API_FAILURE, error }))
         );
@@ -37,7 +37,7 @@ export class BookEffects {
     ofType(BookActions.EDIT_BOOK),
     exhaustMap((action: {book: Book}) => this.bookService.editBook(action.book)
       .pipe(
-        delay(1000),
+        delay(1000), // added delay to simulate api behaviour
         map(({book, message}) => ({ type: BookActions.EDIT_BOOK_SUCCESS, book, message })),
         catchError((error) => of({ type: BookActions.API_FAILURE, error }))
       ))
@@ -48,7 +48,7 @@ export class BookEffects {
     ofType(BookActions.DELETE_BOOK),
     exhaustMap(({id}) => this.bookService.deleteBook(id)
       .pipe(
-        delay(1000),
+        delay(1000), // added delay to simulate api behaviour
         map(({message}) => ({ type: BookActions.DELETE_BOOK_SUCCESS, id, message })),
         catchError((error) => of({ type: BookActions.API_FAILURE, error }))
       ))

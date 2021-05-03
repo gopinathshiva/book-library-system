@@ -15,6 +15,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { BookFormComponent } from './book-form/book-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SearchPipe } from './search.pipe';
+import { FloatingButtonComponent } from './floating-button/floating-button.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SearchPipe } from './search.pipe';
     BookComponent,
     LoaderComponent,
     BookFormComponent,
-    SearchPipe
+    SearchPipe,
+    FloatingButtonComponent
   ],
   imports: [
     BrowserModule,

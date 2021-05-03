@@ -3,7 +3,6 @@ import {Store} from '@ngrx/store';
 import {BookState} from './book.reducer';
 import { addBook, editBook, deleteBook, getBooks } from './book.actions';
 import {isLoading} from './book.selector';
-import {of} from 'rxjs';
 
 const mockBook = {
   name: 'asdf',

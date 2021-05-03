@@ -14,9 +14,7 @@
     </div>
   </div>
 
-  <div class="floating-button-container">
-    <button (click)="addBook()">+</button>
-  </div>
+  <app-floating-button (handleClick)="addBook()"></app-floating-button>
 
   <ng-template #zeroState>
     <div class="center-align-message">No Books Found. Start adding books...</div>
