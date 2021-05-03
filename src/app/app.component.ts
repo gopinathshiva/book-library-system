@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {Book, BookState} from './book.reducer';
+import {BookState} from './book.reducer';
 import { addBook, editBook, deleteBook, getBooks } from './book.actions';
-import {Observable} from 'rxjs';
+import {isLoading} from './book.selector';
 
 const mockBook = {
   name: 'asdf',
@@ -20,15 +20,12 @@ const mockBook = {
 
 export class AppComponent {
   title = 'book-library-system';
+  isLoading$ = this.store.select(isLoading);
 
-  constructor(private store: Store<{ books: BookState }>) {
-    store.select('books').subscribe(state => {
-      console.log(state);
-    });
-  }
+  constructor(private store: Store<{ book: BookState }>) {}
 
   getBooks(): void {
-    this.store.dispatch(getBooks({ books: [] }));
+    this.store.dispatch(getBooks());
   }
 
   addBook(): void {

@@ -1,0 +1,6 @@
+<section class="book-list-container">
+  <app-book *ngFor="let book of books$ | async"
+            [book]="book"
+            (removeBook)="handleRemoveBook($event)"
+  ></app-book>
+</section>

@@ -61,3 +61,7 @@ export interface BookState {
   isLoading: boolean;
   message: string | null;
 }
+
+export interface AppState {
+  book: BookState;
+}

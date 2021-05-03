@@ -8,16 +8,28 @@ import { reducer } from './book.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import {BookEffects} from './book.effects';
 import {HttpClientModule} from '@angular/common/http';
+import { AppHeaderComponent } from './app-header/app-header.component';
+import { BookListComponent } from './book-list/book-list.component';
+import { BookComponent } from './book/book.component';
+import { LoaderComponent } from './loader/loader.component';
+import { BookFormComponent } from './book-form/book-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppHeaderComponent,
+    BookListComponent,
+    BookComponent,
+    LoaderComponent,
+    BookFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({books: reducer}, {}),
+    ReactiveFormsModule,
+    StoreModule.forRoot({book: reducer}, {}),
     EffectsModule.forRoot([BookEffects]),
   ],
   providers: [],

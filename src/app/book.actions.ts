@@ -18,7 +18,7 @@ export enum BookActions {
 export const addBook = createAction(BookActions.ADD_BOOK, props<{ book: Book }>());
 export const editBook = createAction(BookActions.EDIT_BOOK, props<{ book: Book }>());
 export const deleteBook = createAction(BookActions.DELETE_BOOK, props<{ id: string }>());
-export const getBooks = createAction(BookActions.GET_BOOKS, props<{books: Book[]}>());
+export const getBooks = createAction(BookActions.GET_BOOKS);
 
 export const addBookApiSuccess = createAction(BookActions.ADD_BOOK_SUCCESS, props<AddBookApiResponse>());
 export const editBookApiSuccess = createAction(BookActions.EDIT_BOOK_SUCCESS, props<EditBookApiResponse>());

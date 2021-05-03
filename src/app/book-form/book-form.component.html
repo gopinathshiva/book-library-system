@@ -1,0 +1,24 @@
+<div class="container">
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <label for="name">Book Name*</label>
+    <input [class.error] = "name?.invalid && (name?.dirty || name?.touched)" type="text" id="name" formControlName="name" placeholder="Enter Book Name..">
+    <div class="error" *ngIf="name?.invalid && (name?.dirty || name?.touched)">Book Name is required</div>
+
+    <label for="author">Book Author*</label>
+    <input [class.error] = "author?.invalid && (author?.dirty || author?.touched)" type="text" id="author" formControlName="author" placeholder="Enter Book Author..">
+    <div class="error" *ngIf="author?.invalid && (author?.dirty || author?.touched)">Book Author is required</div>
+
+    <label for="count">Book Count*</label>
+    <input [class.error] = "count?.invalid && (count?.dirty || count?.touched)" type="number" id="count" formControlName="count" placeholder="Enter Book Count..">
+    <div class="error" *ngIf="count?.invalid && (count?.dirty || count?.touched)">Book Count is required</div>
+
+    <label for="description">Book Description</label>
+    <textarea id="description" formControlName="description" placeholder="Enter Book Description.."></textarea>
+
+    <label for="url">Book Image Url*</label>
+    <input [class.error] = "url?.invalid && (url?.dirty || url?.touched)" type="text" id="url" formControlName="url" placeholder="Enter Book Image Url">
+    <div class="error" *ngIf="url?.invalid && (url?.dirty || url?.touched)">Book Image Url is required</div>
+
+    <input type="submit" value="Submit" [disabled]="bookForm.invalid">
+  </form>
+</div>
