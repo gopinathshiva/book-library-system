@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     if (err) {
       next('Error parsing file:', err);
     } else {
-      res.json(books);
+      res.json({message: 'successfully retrieved all books', books});
     }
   });
 });
@@ -31,14 +31,14 @@ router.post('/', validate(), (req, res, next) => {
       next(err);
     }
     if (!hasValidationErrors(req, res)) {
-      const bookObj = {
-        id: getUniqueId(),
+      const book = {
         ...req.body,
+        id: getUniqueId(),
       };
-      books.push(bookObj);
+      books.push(book);
       jsonWriter(jsonFilePath, books, (err) => {
         if(!err){
-          res.json({success: `successfully created book id ${bookObj.id}`, bookObj})
+          res.json({message: `successfully created book id ${book.id}`, book})
         }
       });
     }
@@ -58,7 +58,7 @@ router.put('/', validate(), (req, res, next) => {
     books[requiredBookIndex] = req.body;
     jsonWriter(jsonFilePath, books, (err) => {
       if(!err){
-        res.json({success: `successfully updated book id ${req.body.id}`});
+        res.json({message: `successfully updated book id ${req.body.id}`, book: req.body});
       }
     });
   });
@@ -74,7 +74,7 @@ router.delete('/:id', (req, res) => {
     books.splice(requiredBookIndex, 1);
     jsonWriter(jsonFilePath, books, (err) => {
       if(!err){
-        res.json({success: `successfully deleted book id ${req.params.id}`});
+        res.json({message: `successfully deleted book id ${req.params.id}`, id: req.params.id});
       }
     })
   })
